@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-sm-5">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <b>Student Form</b>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <label for="fname" class="form-control-label">First Name:</label>
+                <input id="fname" class="form-control" type="text" name="fname" [(ngModel)]="student.fname" (keyup)="isValid($event.target.value)">
+                <p class="{{ notification.class }}">{{ notification.message }}</p>
+              </div>
+              <div class="col-sm-12">
+                <label for="mname" class="form-control-label">Middle Name:</label>
+                <input id="mname" class="form-control" type="text" name="mname" [(ngModel)]="student.mname">
+              </div>
+              <div class="col-sm-12">
+                <label for="lname" class="form-control-label">Last Name:</label>
+                <input id="lname" class="form-control" type="text" name="lname" [(ngModel)]="student.lname">
+              </div>
+              <div class="col-sm-12">
+                <div class="row mt-5">
+                  <div class="col-sm-3">
+                      <button class="btn btn-lg btn-secondary" (click)="newStudent()">NEW</button>
+                  </div>
+                  <div class="col-sm-9">
+                      <div [ngSwitch]="edit">
+                        <button *ngSwitchCase="false" class="btn btn-lg btn-primary" (click)="addStudent()" [disabled]="!continueAdd()">ADD</button>
+                        <button *ngSwitchCase="true" class="btn btn-lg btn-primary" (click)="updateStudent()">UPDATE</button>
+                      </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  <div class="col-sm-7">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+            <label for="searchText" class="form-control-label">Search:</label>
+            <input type="text" class="form-control" [(ngModel)]="keyword">
+        </div>
+      </div>
+      <div class="col-sm-12">
+          <table class="table table-responsive-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th (click)="switchOrder('fname')" class="col-head" scope="col">First</th>
+                  <th (click)="switchOrder('mname')" class="col-head" scope="col">Middle</th>
+                  <th (click)="switchOrder('lname')" class="col-head" scope="col">Last</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let studentData of studentList | searchPipe: keyword | orderBy: orderCol : sort; let i = index " class="pointer" (click)="getStudent(studentData)">
+                  <td>{{ studentData.id }}</td>
+                  <td>{{ studentData.fname }}</td>
+                  <td>{{ studentData.mname }}</td>
+                  <td>{{ studentData.lname }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-danger" (click)="removeStudent(studentData)">REMOVE</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="viewStudent(studentData)">VIEW</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<app-student-details [object]="fromParent" (fromChild)="reciever($event)">
+
+</app-student-details>

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="card bg-danger text-white mt-5">
+            <div class="card-header">
+              <h3><b>Subject Form</b></h3>
+            </div>   
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label for="subjectName" class="form-control-label">Name:</label>
+                  <input type="text" id="subjectName" class="form-control">
+                </div>
+                <div class="col-sm-12">
+                  <label for="professorList">Assign Professor:</label>
+                  <table class="table table-responsive-sm">
+                      <thead>
+                        <tr>
+                          <!--<th (click)="switchOrder('fname')" class="col-head" scope="col">First</th>
+                          <th (click)="switchOrder('mname')" class="col-head" scope="col">Middle</th>
+                          <th (click)="switchOrder('lname')" class="col-head" scope="col">Last</th>
+                          <th scope="col"></th>-->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of professorList">
+                          <td>{{ data.fname }}</td>
+                          <td>{{ data.mname }}</td>
+                          <td>{{ data.lname }}</td>
+                          <td>
+                            <button class="btn btn-sm btn-primary">ASSIGN</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="col-sm-12">
+                  <button class="btn btn-md btn-primary mt-5">SUBMIT</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

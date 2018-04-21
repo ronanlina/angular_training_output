@@ -1,0 +1,17 @@
+.text-red{
+    color: red;
+}
+
+.text-green{
+    color: green;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.col-head:hover{
+    cursor: pointer;
+    background-color: grey;
+    color:white;
+}
